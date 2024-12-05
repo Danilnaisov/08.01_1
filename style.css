@@ -876,12 +876,12 @@ footer {
     display: none;
   }
   .card__slider {
-    width: 100%;
-    gap: 30px;
-    height: max-content;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth; /* Плавная прокрутка */
+    cursor: grab;
   }
   .card {
     width: 340px;
@@ -889,7 +889,7 @@ footer {
     scroll-snap-align: start;
   }
   .card__slider::-webkit-scrollbar {
-    display: none; /* Скрываем горизонтальный скроллбар */
+    display: none; /* Убираем скроллбар */
   }
   .card img {
     width: 100%;

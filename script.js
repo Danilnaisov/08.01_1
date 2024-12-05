@@ -12,24 +12,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.querySelector(".card__slider");
-  const dots = document.querySelectorAll(".card__explorer .dot");
 
-  slider.addEventListener("scroll", () => {
-    const cardWidth = slider.scrollWidth / dots.length; // Ширина одного "слайда"
-    const scrollLeft = slider.scrollLeft; // Текущее смещение
+const cardContainer = document.getElementById(".card__wrapper2");
+let isDragging = false;
+let startX;
+let scrollLeft;
 
-    // Определяем индекс текущего слайда
-    const activeIndex = Math.round(scrollLeft / cardWidth);
+cardContainer.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  startX = e.pageX - cardContainer.offsetLeft;
+  scrollLeft = cardContainer.scrollLeft;
+  cardContainer.classList.add("active");
+});
 
-    // Переключаем активный класс у точек
-    dots.forEach((dot, index) => {
-      if (index === activeIndex) {
-        dot.parentNode.classList.add("selected");
-      } else {
-        dot.parentNode.classList.remove("selected");
-      }
-    });
-  });
+cardContainer.addEventListener("mouseleave", () => {
+  isDragging = false;
+  cardContainer.classList.remove("active");
+});
+cardContainer.addEventListener("mouseup", () => {
+  isDragging = false;
+  cardContainer.classList.remove("active");
+});
+cardContainer.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - cardContainer.offsetLeft;
+  const walk = (x - startX) * 1.5;
+  cardContainer.scrollLeft = scrollLeft - walk;
 });
