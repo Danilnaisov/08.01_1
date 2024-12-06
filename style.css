@@ -879,17 +879,11 @@ footer {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    overflow-x: auto;
-    scroll-behavior: smooth; /* Плавная прокрутка */
-    cursor: grab;
   }
   .card {
     width: 340px;
     gap: 20px;
     scroll-snap-align: start;
-  }
-  .card__slider::-webkit-scrollbar {
-    display: none; /* Убираем скроллбар */
   }
   .card img {
     width: 100%;
