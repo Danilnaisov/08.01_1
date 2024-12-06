@@ -19,12 +19,12 @@
   /* border: 1px red solid; */
 }
 body {
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   background: #eef1fb;
   width: 1600px;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 main {
   display: flex;
@@ -561,7 +561,7 @@ footer {
   width: 1600px;
   height: max-content;
   margin-top: 275px;
-  margin-left: 100px;
+  padding-left: 100px;
   flex-direction: column;
   justify-content: space-between;
   gap: 140px;
@@ -1017,6 +1017,7 @@ footer {
   .footer {
     padding-top: 15px;
     flex-direction: column;
+    width: 100%;
   }
   .footer div {
     gap: 25px;
