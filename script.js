@@ -13,30 +13,39 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const cardContainer = document.getElementById(".card__wrapper2");
-let isDragging = false;
-let startX;
-let scrollLeft;
+//
+//
+//
 
-cardContainer.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  startX = e.pageX - cardContainer.offsetLeft;
-  scrollLeft = cardContainer.scrollLeft;
-  cardContainer.classList.add("active");
-});
+const slider = document.querySelector(".card__slider");
+const prevButton = document.querySelector(".prev__button");
+const nextButton = document.querySelector(".next__button");
+const slides = Array.from(slider.querySelectorAll(".card"));
+const slideCount = slides.length;
+let slideIndex = 0;
 
-cardContainer.addEventListener("mouseleave", () => {
-  isDragging = false;
-  cardContainer.classList.remove("active");
-});
-cardContainer.addEventListener("mouseup", () => {
-  isDragging = false;
-  cardContainer.classList.remove("active");
-});
-cardContainer.addEventListener("mousemove", (e) => {
-  if (!isDragging) return;
-  e.preventDefault();
-  const x = e.pageX - cardContainer.offsetLeft;
-  const walk = (x - startX) * 1.5;
-  cardContainer.scrollLeft = scrollLeft - walk;
-});
+prevButton.addEventListener("click", showPreviousSlide);
+nextButton.addEventListener("click", showNextSlide);
+
+function showPreviousSlide() {
+  slideIndex = (slideIndex - 1 + slideCount) % slideCount;
+  updateSlider();
+}
+
+function showNextSlide() {
+  slideIndex = (slideIndex + 1) % slideCount;
+  updateSlider();
+}
+
+function updateSlider() {
+  slides.forEach((slide, index) => {
+    if (index === slideIndex) {
+      slide.style.display = "block";
+    } else {
+      slide.style.display = "none";
+    }
+  });
+}
+
+// Установить начальное состояние
+updateSlider();
